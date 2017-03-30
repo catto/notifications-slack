@@ -29,11 +29,12 @@
   "dependencies": {
     "joi": "^10.3.1",
     "request": "^2.81.0",
-    "screwdriver-notifications-base": "1.0.0"
+    "screwdriver-notifications-base": "2.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
     "eslint": "^3.18.0",
+    "eslint-config-screwdriver": "^2.1.2",
     "hapi": "^16.1.0",
     "jenkins-mocha": "^4.1.2",
     "mockery": "^2.0.0",
