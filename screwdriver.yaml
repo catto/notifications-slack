@@ -1,0 +1,19 @@
+workflow:
+    - publish
+
+shared:
+    image: node:6
+
+jobs:
+    main:
+        steps:
+            - install: npm install
+            - test: npm test
+
+    publish:
+        steps:
+            - install: npm install semantic-release
+            - publish: npm run semantic-release
+        secrets:
+            - NPM_TOKEN
+            - GH_TOKEN
