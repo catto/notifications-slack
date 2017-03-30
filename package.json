@@ -1,47 +1,48 @@
 {
-    "name": "screwdriver-notifications-slack",
-    "version": "1.0.0",
-    "description": "Send slack notifications on certain build events",
-    "main": "index.js",
-    "scripts": {
-        "pretest": "eslint .",
-        "test": "jenkins-mocha --recursive",
-        "semantic-release": "semantic-release pre && npm publish && semantic-release post"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/d2lam/notifications-slack.git"
-    },
-    "keywords": [
-        "slack",
-        "screwdriver",
-        "notifications"
-    ],
-    "author": "Dao Lam <daolam112@gmail.com>",
-    "contributors": [
-        "Min Zhang <minzhang@andrew.cmu.edu>"
-    ],
-    "license": "BSD-3-Clause",
-    "bugs": {
-        "url": "https://github.com/d2lam/notifications-slack/issues"
-    },
-    "homepage": "https://github.com/d2lam/notifications-slack#readme",
-    "dependencies": {
-        "joi": "^10.3.1",
-        "request": "^2.81.0",
-        "screwdriver-notifications-base": "1.0.0"
-    },
-    "devDependencies": {
-        "chai": "^3.5.0",
-        "hapi": "^16.1.0",
-        "jenkins-mocha": "^4.1.2",
-        "mockery": "^2.0.0",
-        "sinon": "^2.1.0"
-    },
-    "release": {
-        "debug": false,
-        "verifyConditions": {
-            "path": "./node_modules/semantic-release/src/lib/plugin-noop.js"
-        }
+  "name": "screwdriver-notifications-slack",
+  "version": "1.0.0",
+  "description": "Send slack notifications on certain build events",
+  "main": "index.js",
+  "scripts": {
+    "pretest": "eslint .",
+    "test": "jenkins-mocha --recursive",
+    "semantic-release": "semantic-release pre && npm publish && semantic-release post"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d2lam/notifications-slack.git"
+  },
+  "keywords": [
+    "slack",
+    "screwdriver",
+    "notifications"
+  ],
+  "author": "Dao Lam <daolam112@gmail.com>",
+  "contributors": [
+    "Min Zhang <minzhang@andrew.cmu.edu>"
+  ],
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/d2lam/notifications-slack/issues"
+  },
+  "homepage": "https://github.com/d2lam/notifications-slack#readme",
+  "dependencies": {
+    "joi": "^10.3.1",
+    "request": "^2.81.0",
+    "screwdriver-notifications-base": "1.0.0"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.18.0",
+    "hapi": "^16.1.0",
+    "jenkins-mocha": "^4.1.2",
+    "mockery": "^2.0.0",
+    "sinon": "^2.1.0"
+  },
+  "release": {
+    "debug": false,
+    "verifyConditions": {
+      "path": "./node_modules/semantic-release/src/lib/plugin-noop.js"
     }
+  }
 }
