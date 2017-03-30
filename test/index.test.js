@@ -76,7 +76,7 @@ describe('index', () => {
             const saveMe = notifier.notify().then((res) => {
                 assert.calledWithMatch(requestMock, {
                     body: {
-                        text: ':sob: Screwdriver screwdrivercd/api main #12 FAILURE'
+                        text: 'Screwdriver screwdrivercd/api main #12 FAILURE :sob:'
                     }
                 });
                 assert.equal(res, null);
