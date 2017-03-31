@@ -56,7 +56,8 @@ class SlackNotifier extends Notifier {
                     body: {
                         username: 'screwdriver_bot',
                         text: `Screwdriver ${buildData.pipelineName} ${buildData.jobName} ` +
-                              `#${buildData.buildId} ${status} ${EMOJI[status]}`
+                              `#${buildData.buildId} ${status} ${EMOJI[status]}` +
+                              `\nBuild link: ${buildData.buildLink}`
                     },
                     json: true,
                     method: 'POST',

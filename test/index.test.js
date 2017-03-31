@@ -54,7 +54,8 @@ describe('index', () => {
                 status: 'FAILURE',
                 pipelineName: 'screwdrivercd/api',
                 jobName: 'main',
-                buildId: 12
+                buildId: 12,
+                buildLink: 'https://foo.bar'
             };
         });
 
@@ -77,6 +78,7 @@ describe('index', () => {
                 assert.calledWithMatch(requestMock, {
                     body: {
                         text: 'Screwdriver screwdrivercd/api main #12 FAILURE :sob:'
+                        + '\nBuild link: https://foo.bar'
                     }
                 });
                 assert.equal(res, null);
