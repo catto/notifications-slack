@@ -46,7 +46,7 @@ class SlackNotifier extends Notifier {
 
                 const settings = buildData.settings;
                 const status = buildData.status;
-                const statusSettings = settings.status || ['FAILURE'];
+                const statusSettings = settings.slack.statuses || ['FAILURE'];
 
                 if (!statusSettings.includes(status)) {
                     return resolve(null);
@@ -55,8 +55,8 @@ class SlackNotifier extends Notifier {
                 const params = {
                     body: {
                         username: 'screwdriver_bot',
-                        text: `${EMOJI[status]} Screwdriver ${buildData.pipelineName} ` +
-                              `${buildData.jobName} #${buildData.buildId} ${status}`
+                        text: `Screwdriver ${buildData.pipelineName} ${buildData.jobName} ` +
+                              `#${buildData.buildId} ${status} ${EMOJI[status]}`
                     },
                     json: true,
                     method: 'POST',
