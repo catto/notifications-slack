@@ -13,7 +13,7 @@ const EMOJI = {
 const SCHEMA_STATUS = Joi.string().valid(Object.keys(EMOJI));
 const SCHEMA_SLACK_SETTINGS = Joi.object().keys({
     slack: Joi.object().keys({
-        url: Joi.string().uri().required(),
+        channel: Joi.string().required(),
         statuses: Joi.array().items(SCHEMA_STATUS).min(0)
     }).required()
 });
@@ -35,43 +35,43 @@ class SlackNotifier extends Notifier {
     * @return {Promise} resolves to false if status is not in notification statuses
     *                   resolves to emailer if status is in notification statuses
     */
-    notify() {
-        return new Promise((resolve, reject) => {
-            this.server.on(this.eventName, (buildData) => {
-                const validate = Joi.validate(buildData, SCHEMA_BUILD_DATA);
+    _notify(buildData) {
+        const validate = Joi.validate(buildData, SCHEMA_BUILD_DATA);
 
-                if (validate.error) {
-                    return reject('Invalid build data format');
-                }
+        if (validate.error) {
+            return console.log('Invalid build data format');
+        }
 
-                const settings = buildData.settings;
-                const status = buildData.status;
-                const statusSettings = settings.slack.statuses || ['FAILURE'];
+        const settings = buildData.settings;
+        const status = buildData.status;
+        const statusSettings = settings.slack.statuses || ['FAILURE'];
 
-                if (!statusSettings.includes(status)) {
-                    return resolve(null);
-                }
+        if (!statusSettings.includes(status)) {
+            return console.log(null);
+        }
 
-                const params = {
-                    body: {
-                        username: 'screwdriver_bot',
-                        text: `Screwdriver ${buildData.pipelineName} ${buildData.jobName} ` +
-                              `#${buildData.buildId} ${status} ${EMOJI[status]}` +
-                              `\nBuild link: ${buildData.buildLink}`
-                    },
-                    json: true,
-                    method: 'POST',
-                    url: settings.slack.url
-                };
+        const params = {
+            form: {
+                username: 'screwdriver_bot',
+                token: this.config.token,
+                pretty: '1',
+                channel: settings.slack.channel,
+                text: `Screwdriver ${buildData.pipelineName} ${buildData.jobName} ` +
+                      `#${buildData.buildId} ${status} ${EMOJI[status]}` +
+                      `\nBuild link: "http://dummyUrl"`
+                      //`\nBuild link: ${buildData.buildLink}`
+            },
+            json: false,
+            method: 'POST',
+            url: 'https://slack.com/api/chat.postMessage'
+        };
 
-                return request(params, (err, response, body) => {
-                    if (err) {
-                        return reject(err);
-                    }
+        return request(params, (err, response, body) => {
+            if (err) {
+                return console.log(err);
+            }
 
-                    return resolve(body);
-                });
-            });
+            return console.log(body);
         });
     }
 }

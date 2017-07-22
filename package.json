@@ -29,7 +29,7 @@
   "dependencies": {
     "joi": "^10.3.1",
     "request": "^2.81.0",
-    "screwdriver-notifications-base": "2.0.0"
+    "screwdriver-notifications-base": "3.0.0"
   },
   "devDependencies": {
     "chai": "^3.5.0",
